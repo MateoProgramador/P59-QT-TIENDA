@@ -10,10 +10,10 @@ private:
     int m_codigo;
     QString m_nombre;
     float m_precio;
+
 public:
     explicit Producto(QObject *parent = nullptr);
     Producto(int codigo, const QString &nombre, float precio, QObject *parent = nullptr);
-
 
     int codigo() const;
     void setCodigo(int newCodigo);
