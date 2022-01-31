@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "producto.h"
+#include "facturacion.h"
 
 #define IVA 12
 
@@ -24,13 +25,15 @@ private slots:
 
     void on_btnAgregar_released();
 
+    void on_Finalizar_released();
+
 private:
     Ui::Tienda *ui;
     QList<Producto*> m_productos;
     void cargarProductos();
     float m_subtotal;
-
     void calcular(float stProducto);
+    bool verificacionCedula(QString as);
 
 };
 #endif // TIENDA_H
