@@ -54,6 +54,13 @@ void Facturacion::setProductos(const QString &newProductos)
     m_productos = newProductos;
 }
 
+void Facturacion::totales(QString subTotal, QString IVA, QString total)
+{
+    QString formato = "";
+    formato += "\nSubtotal: " + subTotal + "\n" + "IVA: "  + IVA + "\n" + "Total: " + total;
+    ui->outDatos->appendPlainText(formato);
+}
+
 void Facturacion::mostrar()
 {
     facturacionPantalla();
@@ -67,7 +74,7 @@ void Facturacion::facturacionPantalla()
     QString titulo = "\t********************************************\n\t\tHOY NO FIO MAÑANA SI\n"
                      "\t********************************************\n"
                      "\tRUC:999999999\n"
-                     "Direccion: Av.Condor Ñan y Rumiñaca Ñan\n\tQuito 58\n"
+                     "\tDireccion: Av.Condor Ñan y Rumiñaca Ñan\n\tQuito 58\n"
                      "\tNumero: (02) 314-2212\n"
                      "\t********************************************\n"
                      "\t\t - - DATOS CLIENTE - - \n"
@@ -94,3 +101,17 @@ data = titulo;
     ui->outDatos->setPlainText(data);
 
 }
+
+void Facturacion::on_buttonBox_accepted()
+{
+    QString fecha = QDateTime::currentDateTime().toString("ddMMyyyy");
+        QFile archivo (fecha+".txt");
+        if(archivo.open(QIODevice::WriteOnly|QIODevice::Text)){
+            QTextStream datos_Archivo(&archivo);
+            datos_Archivo<<ui->outDatos->toPlainText();
+
+        }
+
+        archivo.close();
+}
+

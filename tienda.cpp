@@ -8,6 +8,8 @@ Tienda::Tienda(QWidget *parent)
     , ui(new Ui::Tienda)
 {
     ui->setupUi(this);
+    ui->inTelefono->setValidator(new QIntValidator(0,999999999,this));
+     ui->inCedula->setValidator(new QIntValidator(0,1410065407,this));
     // Lista de productos
     cargarProductos();
     // Mostrar los productos en el combo
@@ -178,6 +180,80 @@ bool Tienda::verificacionCedula(QString as)
         return est;
 }
 
+bool Tienda::campos()
+{
+    bool verificado = true;
+    //Cedula
+    if(ui->inCedula->text().isEmpty()||!verificacionCedula(ui->inCedula->text())){
+        ui->inCedula->setStyleSheet("background-color:rgb(191,54,45);");
+
+        verificado= false;
+    }
+    else{
+        ui->inCedula->setStyleSheet("background-color:rgb(61,191,45);");
+
+    }
+    if(ui->inNombre->text().isEmpty()){
+            ui->inNombre->setStyleSheet("background-color:rgb(191,54,45);");
+    verificado = false;
+
+
+}
+    else{
+         ui->inNombre->setStyleSheet("background-color:rgb(61,191,45);");
+    }
+    //Telefono
+    if(ui->inTelefono->text().isEmpty()){
+            ui->inTelefono->setStyleSheet("background-color:rgb(191,54,45);");
+    verificado = false;
+
+
+}
+    else{
+         ui->inTelefono->setStyleSheet("background-color:rgb(61,191,45);");
+    }
+    //Email
+    if(ui->inEmail->text().isEmpty()){
+            ui->inEmail->setStyleSheet("background-color:rgb(191,54,45);");
+    verificado = false;
+
+
+}
+    else{
+         ui->inEmail->setStyleSheet("background-color:rgb(61,191,45);");
+    }
+    //Direccion
+    if(ui->inDireccion->toPlainText().isEmpty()){
+            ui->inDireccion->setStyleSheet("background-color:rgb(191,54,45);");
+    verificado = false;
+
+
+}
+    else{
+         ui->inDireccion->setStyleSheet("background-color:rgb(61,191,45);");
+    }
+    return verificado;
+}
+
+void Tienda::limpiar()
+{
+    ui->inCedula->clear();
+    ui->inNombre->clear();
+    ui->inTelefono->clear();
+    ui->inEmail->clear();
+    int rows=ui->outDetalle->rowCount();
+        while(rows!=-1){
+            ui->outDetalle->removeRow(rows);
+            rows--;
+        }
+        ui->inDireccion->clear();
+    ui->outIva->clear();
+    ui->outSubtotal->clear();
+    ui->outTotal->clear();
+    ui->outDetalle->clear();
+    ui->outPrecio->clear();
+}
+
 
 void Tienda::on_inProducto_currentIndexChanged(int index)
 {
@@ -229,10 +305,21 @@ void Tienda::on_Finalizar_released()
         descripcionProductos += ui->outDetalle->item(contador,0)->text() + "\t" + ui->outDetalle->item(contador,1)->text() + "\t" + ui->outDetalle->item(contador,2)->text() + "\t" + ui->outDetalle->item(contador,3)->text() + "\n";
         contador ++;
     }
+    if(campos()){
+        Facturacion *factura = new Facturacion (this);
+        factura->setProductos(descripcionProductos);
 
-    Facturacion *factura = new Facturacion (this);
-    factura->setProductos(descripcionProductos);
-    factura->ingresoDatos(ui->inCedula->text(),ui->inNombre->text(),ui->inTelefono->text(),ui->inDireccion->toPlainText(),ui->inEmail->text());
-    factura->exec();
+        factura->ingresoDatos(ui->inCedula->text(),ui->inNombre->text(),ui->inTelefono->text(),ui->inDireccion->toPlainText(),ui->inEmail->text());
+        factura->totales(ui->outSubtotal->text(),ui->outIva->text(),ui->outTotal->text());
+        factura->exec();
+
+    }
+
+}
+
+
+void Tienda::on_btnLimpiar_released()
+{
+    limpiar();
 }
 

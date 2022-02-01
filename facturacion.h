@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QDebug>
+#include <QDateTime>
+#include <QFile>
 
 namespace Ui {
 class Facturacion;
@@ -24,6 +26,10 @@ public:
     void ingresoDatos(QString cedula, QString nombre, QString telefono, QString direccion , QString correo);
 
     void setProductos(const QString &newProductos);
+    void totales(QString subTotal,QString IVA,QString total);
+
+private slots:
+    void on_buttonBox_accepted();
 
 private:
     Ui::Facturacion *ui;

@@ -27,6 +27,8 @@ private slots:
 
     void on_Finalizar_released();
 
+    void on_btnLimpiar_released();
+
 private:
     Ui::Tienda *ui;
     QList<Producto*> m_productos;
@@ -34,6 +36,9 @@ private:
     float m_subtotal;
     void calcular(float stProducto);
     bool verificacionCedula(QString as);
+    bool campos();
+    void limpiar();
+
 
 };
 #endif // TIENDA_H
