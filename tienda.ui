@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Tienda</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Recursos.qrc">
+    <normaloff>:/Recursos/tienda.png</normaloff>:/Recursos/tienda.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
@@ -325,6 +329,7 @@ color: rgb(224, 27, 36);</string>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -334,9 +339,22 @@ color: rgb(224, 27, 36);</string>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAcerca_de">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="actionAcerca_de"/>
+   </widget>
+   <addaction name="menuAcerca_de"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de </string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

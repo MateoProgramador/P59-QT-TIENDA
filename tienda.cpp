@@ -323,3 +323,10 @@ void Tienda::on_btnLimpiar_released()
     limpiar();
 }
 
+
+void Tienda::on_actionAcerca_de_triggered()
+{
+    acerca *dialogo = new acerca(this);
+    dialogo->show();
+}
+

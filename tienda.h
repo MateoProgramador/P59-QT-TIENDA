@@ -5,6 +5,7 @@
 
 #include "producto.h"
 #include "facturacion.h"
+#include "acerca.h"
 
 #define IVA 12
 
@@ -28,6 +29,8 @@ private slots:
     void on_Finalizar_released();
 
     void on_btnLimpiar_released();
+
+    void on_actionAcerca_de_triggered();
 
 private:
     Ui::Tienda *ui;
