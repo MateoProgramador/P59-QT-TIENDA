@@ -74,29 +74,29 @@ void Facturacion::facturacionPantalla()
     QString titulo = "\t********************************************\n\t\tHOY NO FIO MAÑANA SI\n"
                      "\t********************************************\n"
                      "\tRUC:999999999\n"
-                     "\tDireccion: Av.Condor Ñan y Rumiñaca Ñan\n\tQuito 58\n"
-                     "\tNumero: (02) 314-2212\n"
+                     "\t"+tr("Direccion")+": Av.Condor Ñan y Rumiñaca Ñan\n\tQuito 58\n"
+                     "\t"+tr("Numero")+": (02) 314-2212\n"
                      "\t********************************************\n"
-                     "\t\t - - DATOS CLIENTE - - \n"
+                     "\t\t - -"+tr ("DATOS CLIENTE")+ "- - \n"
                      "\t********************************************\n";
 data = titulo;
     if(m_cedula!="999999999"){
-        QString nombre = "\tNombre: " + m_nombre + "\n";
-        QString cedula = "\tCedula: " + m_cedula + "\n";
-        QString telefono = "\tTelefono: " + m_telefono + "\n";
-        QString correo = "\tE-mail: " + m_correo + "\n";
-        QString direccion = "\tDireccion: " + m_direccion + "\n";
+        QString nombre = "\t"+tr("Nombre")+": " + m_nombre + "\n";
+        QString cedula = "\t"+tr("Cedula")+": " + m_cedula + "\n";
+        QString telefono = "\t"+tr("Telefono")+": " + m_telefono + "\n";
+        QString correo = "\t"+tr("E-mail")+": " + m_correo + "\n";
+        QString direccion = "\t"+tr("Direccion")+": " + m_direccion + "\n";
                                                          "\t*************************************\n";
         data+=nombre+cedula+telefono+correo+direccion+"\n"+"\n";
 
     }
     else{
-        QString  add = "\t\tCONSUMIDOR FINAL\n\n\t**********************************************\n";
+        QString  add = "\t\t"+tr("CONSUMIDOR FINAL")+"\n\n\t**********************************************\n";
         data= add;
 
     }
     QString pro;
-    pro= "\tCantidad\tProducto\tP.Unitario\tSubTotal\n" + m_productos;
+    pro= "\t"+tr("Cantidad")+"\t"+tr("Producto")+"\t"+tr("P.Unitario")+"\t"+tr("SubTotal")+"\n" + m_productos;
     data+=pro;
     ui->outDatos->setPlainText(data);
 
