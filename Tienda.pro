@@ -26,7 +26,8 @@ FORMS += \
     facturacion.ui \
     tienda.ui
 TRANSLATIONS = \
-tienda_en.ts
+tienda_en.ts \
+tienda_fr.ts
 
 
 # Default rules for deployment.

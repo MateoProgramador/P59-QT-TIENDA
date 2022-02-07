@@ -302,7 +302,7 @@ void Tienda::on_Finalizar_released()
     QString descripcionProductos = "";
     int row = ui->outDetalle->rowCount(),contador = 0;
     while (contador != row){
-        descripcionProductos += ui->outDetalle->item(contador,0)->text() + "\t" + ui->outDetalle->item(contador,1)->text() + "\t" + ui->outDetalle->item(contador,2)->text() + "\t" + ui->outDetalle->item(contador,3)->text() + "\n";
+        descripcionProductos += "\t" + ui->outDetalle->item(contador,0)->text() + "\t" + ui->outDetalle->item(contador,1)->text() + "\t" + ui->outDetalle->item(contador,2)->text() + "\t" + ui->outDetalle->item(contador,3)->text() + "\n";
         contador ++;
     }
     if(campos()){
